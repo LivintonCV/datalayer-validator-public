@@ -1,0 +1,8 @@
+[
+  {
+    "id": "core.event.name.required",
+    "title": "Event name is required",
+    "severity": "error",
+    "logic": { "type": "required", "path": "$.eventName" }
+  }
+]
