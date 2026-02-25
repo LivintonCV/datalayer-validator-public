@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DLV Report Schema",
+  "type": "object",
+  "required": [
+    "reportVersion",
+    "generatedAt",
+    "summary",
+    "findings"
+  ],
+  "properties": {
+    "reportVersion": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "integer"
+        },
+        "warnings": {
+          "type": "integer"
+        },
+        "info": {
+          "type": "integer"
+        },
+        "eventsObserved": {
+          "type": "integer"
+        },
+        "pagesObserved": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "ruleId",
+          "message"
+        ],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "error",
+              "warning",
+              "info"
+            ]
+          },
+          "ruleId": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "pageUrl": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "expected": {},
+          "observed": {},
+          "message": {
+            "type": "string"
+          },
+          "hint": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

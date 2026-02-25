@@ -1,0 +1,9 @@
+{
+  "note": "Optional split file example: expected events list (if your workflow prefers it).",
+  "events": [
+    "page_view",
+    "add_to_cart",
+    "purchase",
+    "sign_up"
+  ]
+}

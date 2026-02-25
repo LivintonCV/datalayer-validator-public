@@ -1,0 +1,117 @@
+{
+  "rulesVersion": "1.0.0",
+  "project": {
+    "name": "Example Storefront",
+    "id": "storefront-web",
+    "owner": "Analytics Team",
+    "environments": [
+      "dev",
+      "stage",
+      "prod"
+    ]
+  },
+  "conventions": {
+    "eventName": {
+      "pattern": "^[a-z]+(_[a-z0-9]+)*$",
+      "examples": [
+        "page_view",
+        "add_to_cart",
+        "purchase"
+      ]
+    },
+    "currency": {
+      "allowed": [
+        "USD",
+        "EUR",
+        "CRC"
+      ]
+    }
+  },
+  "globalRequired": [
+    "page.name",
+    "page.type"
+  ],
+  "globalFields": {
+    "page.name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "page.type": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "id": "evt.page_view",
+      "name": "page_view",
+      "severity": "error",
+      "required": [
+        "page.pageType"
+      ],
+      "fields": {
+        "page.pageType": {
+          "type": "string",
+          "allowed": [
+            "home",
+            "plp",
+            "pdp",
+            "cart",
+            "checkout"
+          ]
+        },
+        "page.language": {
+          "type": "string",
+          "allowed": [
+            "en",
+            "es"
+          ]
+        }
+      },
+      "hints": [
+        {
+          "message": "Use standardized page types and languages.",
+          "link": "https://example.com/taxonomy"
+        }
+      ]
+    },
+    {
+      "id": "evt.add_to_cart",
+      "name": "add_to_cart",
+      "severity": "error",
+      "required": [
+        "product.sku",
+        "product.name",
+        "currency",
+        "value"
+      ],
+      "fields": {
+        "product.sku": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_-]{3,}$"
+        },
+        "product.name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "currency": {
+          "type": "string",
+          "allowed": [
+            "USD",
+            "EUR",
+            "CRC"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "min": 0
+        }
+      },
+      "hints": [
+        {
+          "message": "Ensure ecommerce values are numeric and currency is ISO-4217.",
+          "link": "https://en.wikipedia.org/wiki/ISO_4217"
+        }
+      ]
+    }
+  ]
+}

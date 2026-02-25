@@ -1,0 +1,3 @@
+severity,ruleId,eventName,pageUrl,path,expected,observed,message,hint
+error,evt.page_view,page_view,https://example.com/,page.pageType,"one of [home, plp, pdp, cart, checkout]",homepage,Invalid value for page.pageType,Use the taxonomy value: home
+warning,evt.add_to_cart,add_to_cart,https://example.com/pdp/123,product.sku,"pattern ^[A-Z0-9_-]{3,}$",sku 123,SKU format looks incorrect,Remove spaces; use uppercase letters/numbers with _ or -

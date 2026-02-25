@@ -1,0 +1,47 @@
+{
+  "reportVersion": "1.0.0",
+  "generatedAt": "2026-02-24T00:00:00Z",
+  "project": {
+    "id": "storefront-web",
+    "environment": "stage"
+  },
+  "summary": {
+    "errors": 1,
+    "warnings": 1,
+    "info": 0,
+    "eventsObserved": 12,
+    "pagesObserved": 5
+  },
+  "findings": [
+    {
+      "severity": "error",
+      "ruleId": "evt.page_view",
+      "eventName": "page_view",
+      "pageUrl": "https://example.com/",
+      "path": "page.pageType",
+      "expected": "one of [home, plp, pdp, cart, checkout]",
+      "observed": "homepage",
+      "message": "Invalid value for page.pageType",
+      "hint": "Use the taxonomy value: home",
+      "evidence": {
+        "source": "dataLayer",
+        "timestamp": "2026-02-24T00:00:00Z"
+      }
+    },
+    {
+      "severity": "warning",
+      "ruleId": "evt.add_to_cart",
+      "eventName": "add_to_cart",
+      "pageUrl": "https://example.com/pdp/123",
+      "path": "product.sku",
+      "expected": "pattern ^[A-Z0-9_-]{3,}$",
+      "observed": "sku 123",
+      "message": "SKU format looks incorrect",
+      "hint": "Remove spaces; use uppercase letters/numbers with _ or -",
+      "evidence": {
+        "source": "dataLayer",
+        "timestamp": "2026-02-24T00:02:10Z"
+      }
+    }
+  ]
+}
