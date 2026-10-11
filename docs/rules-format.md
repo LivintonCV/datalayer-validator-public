@@ -119,8 +119,13 @@ spaces.
   "required": ["xdm.productListItems[0].SKU"] }
 ```
 
-The extension attributes a request to the Launch rule that fired just before it, so the match is
-approximate.
+The extension attributes a request to the Launch rule that has the action that sends it and did
+not fail its conditions, read from what Launch itself reports, and also keeps the rules that
+prepared the data of that request (the ones that update the variable before the send).
+`launchRule` matches the rule that sent the request or any of the rules that prepared it. On a
+property where one rule sends for many events, name the rule that prepares the event. When
+Launch reports no rule with a send action, the extension falls back to the last rule that ran
+before the request, and the match is approximate.
 
 ### `business` (on an event rule)
 
