@@ -1,47 +1,66 @@
 {
-  "reportVersion": "1.0.0",
-  "generatedAt": "2026-02-24T00:00:00Z",
-  "project": {
-    "id": "storefront-web",
-    "environment": "stage"
+  "reportVersion": "1.0",
+  "exportedAt": "2026-02-24T00:00:00.000Z",
+  "extension": "data-layer-validator",
+  "version": "2.0.0",
+  "run": {
+    "id": "run-1",
+    "name": "Checkout walkthrough",
+    "origin": "https://example.com",
+    "startedAt": 1771891200000,
+    "endedAt": 1771891800000
   },
-  "summary": {
+  "verdict": {
+    "value": "not_ready",
+    "reason": [
+      "errors"
+    ]
+  },
+  "counts": {
     "errors": 1,
     "warnings": 1,
-    "info": 0,
-    "eventsObserved": 12,
-    "pagesObserved": 5
+    "affectedEvents": 2,
+    "notEvaluated": 0,
+    "criticalMissing": 0
+  },
+  "coverage": {
+    "seen": 2,
+    "total": 2
+  },
+  "conformity": {
+    "clean": 10,
+    "total": 12
   },
   "findings": [
     {
-      "severity": "error",
       "ruleId": "evt.page_view",
-      "eventName": "page_view",
-      "pageUrl": "https://example.com/",
-      "path": "page.pageType",
+      "ruleName": "page_view",
+      "critical": true,
+      "severity": "error",
+      "event": "page_view",
+      "page": "https://example.com/",
+      "field": "page.type",
       "expected": "one of [home, plp, pdp, cart, checkout]",
       "observed": "homepage",
-      "message": "Invalid value for page.pageType",
       "hint": "Use the taxonomy value: home",
-      "evidence": {
-        "source": "dataLayer",
-        "timestamp": "2026-02-24T00:00:00Z"
-      }
+      "business": "Without this event no page is counted, and every report starts from it.",
+      "at": 1771891205000,
+      "launchRule": "Page view | Analytics"
     },
     {
-      "severity": "warning",
       "ruleId": "evt.add_to_cart",
-      "eventName": "add_to_cart",
-      "pageUrl": "https://example.com/pdp/123",
-      "path": "product.sku",
+      "ruleName": "add_to_cart",
+      "critical": false,
+      "severity": "warning",
+      "event": "add_to_cart",
+      "page": "https://example.com/pdp/123",
+      "field": "product.sku",
       "expected": "pattern ^[A-Z0-9_-]{3,}$",
       "observed": "sku 123",
-      "message": "SKU format looks incorrect",
       "hint": "Remove spaces; use uppercase letters/numbers with _ or -",
-      "evidence": {
-        "source": "dataLayer",
-        "timestamp": "2026-02-24T00:02:10Z"
-      }
+      "business": "A missing or malformed SKU breaks the product reports.",
+      "at": 1771891400000,
+      "launchRule": ""
     }
   ]
 }
