@@ -60,8 +60,24 @@ Each field can define constraints:
 - **pattern**: regex pattern (string)
 - **minLength / maxLength**: for strings
 - **min / max**: for numbers
-- **nullable**: boolean (if supported)
-- **default**: informational default
+- **nullable**: boolean — `true` lets the field be `null` as well as its declared type
+
+Paths take dot notation, an index or a wildcard: `page.type`, `items[0].sku`, `items[*].sku`.
+A wildcard holds when every element of the array matches.
+
+There is no `default` key: a rules file states what must be true, never what to fill in.
+
+---
+
+## Limits
+
+The extension refuses a file that goes past any of these, with the reason on screen:
+
+- `rulesVersion` must be `1.x`; anything else is rejected, not ignored.
+- at most **500** rules in a file.
+- a `pattern` of at most **500** characters.
+- at most **50** steps in a `guide`.
+- under **256 KB** for a file saved as a project.
 
 ---
 
@@ -135,6 +151,18 @@ shows it under "What it means".
 ```json
 { "id": "evt.purchase", "name": "purchase", "business": "This sale will not appear in revenue reports." }
 ```
+
+### `critical` (on an event rule)
+
+Marks a rule the run cannot be called finished without.
+
+```json
+{ "id": "evt.purchase", "name": "purchase", "critical": true }
+```
+
+A saved run is "Ready" only when no finding is an error **and** every rule marked `critical` was
+seen at least once. A critical rule that never fired makes the verdict "Not ready" and says so,
+with the count of critical rules not seen. It changes nothing about how an event is judged.
 
 ### `guide` (top level)
 

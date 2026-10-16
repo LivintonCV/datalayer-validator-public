@@ -96,7 +96,8 @@
           "link": "https://example.com/taxonomy"
         }
       ],
-      "business": "Reports will not tell which kind of page people saw."
+      "business": "Reports will not tell which kind of page people saw.",
+      "critical": true
     },
     {
       "id": "evt.add_to_cart",

@@ -15,7 +15,7 @@ This repository contains **documentation, rule/validation file formats, and exam
 - required fields are present and well-typed
 - values follow agreed naming conventions and allowed sets
 - analytics payloads (e.g., Adobe Web SDK / AppMeasurement) match expectations
-- issues can be **exported** as structured reports (JSON/CSV/PDF depending on tier)
+- issues can be **exported** as structured reports: the findings as JSON and CSV, and a self-contained HTML report ready to print to PDF
 
 ---
 
