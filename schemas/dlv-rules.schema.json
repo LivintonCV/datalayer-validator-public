@@ -48,6 +48,61 @@
     "globalFields": {
       "type": "object"
     },
+    "guide": {
+      "description": "Steps of a guided run for the Guide tab.",
+      "type": "object",
+      "required": [
+        "title",
+        "steps"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intro": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "do",
+              "expect"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "do": {
+                "description": "The instruction a person follows on the site.",
+                "type": "string",
+                "minLength": 1
+              },
+              "done": {
+                "description": "Sentence shown when the step was measured without findings.",
+                "type": "string"
+              },
+              "expect": {
+                "description": "Ids of the rules this step expects to see.",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
     "events": {
       "type": "array",
       "items": {
@@ -62,6 +117,38 @@
           },
           "name": {
             "type": "string"
+          },
+          "source": {
+            "description": "Where the event must come from. Omit to accept any source.",
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "gtm",
+                  "adobe",
+                  "adobe_websdk",
+                  "adobe_appmeasurement"
+                ]
+              },
+              {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "gtm",
+                    "adobe",
+                    "adobe_websdk",
+                    "adobe_appmeasurement"
+                  ]
+                }
+              }
+            ]
+          },
+          "launchRule": {
+            "description": "Name of the Adobe Launch rule. When present the rule is matched by the Launch rule attributed to the event, not by name.",
+            "type": "string",
+            "minLength": 1
           },
           "severity": {
             "type": "string",
@@ -94,6 +181,11 @@
               },
               "additionalProperties": true
             }
+          },
+          "business": {
+            "description": "One sentence: what a failure of this rule means outside the tracking team.",
+            "type": "string",
+            "minLength": 1
           }
         },
         "additionalProperties": true

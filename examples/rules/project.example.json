@@ -40,10 +40,33 @@
       "type": "string"
     }
   },
+  "guide": {
+    "title": "Try adding a product to the cart",
+    "intro": "Follow the steps on the site. Each one is marked as it is measured.",
+    "steps": [
+      {
+        "id": "page",
+        "do": "Open any page",
+        "done": "The page view was measured.",
+        "expect": [
+          "evt.page_view"
+        ]
+      },
+      {
+        "id": "cart",
+        "do": "Add a product to the cart",
+        "done": "The product in the cart was measured.",
+        "expect": [
+          "evt.add_to_cart"
+        ]
+      }
+    ]
+  },
   "events": [
     {
       "id": "evt.page_view",
       "name": "page_view",
+      "source": "gtm",
       "severity": "error",
       "required": [
         "page.pageType"
@@ -72,11 +95,13 @@
           "message": "Use standardized page types and languages.",
           "link": "https://example.com/taxonomy"
         }
-      ]
+      ],
+      "business": "Reports will not tell which kind of page people saw."
     },
     {
       "id": "evt.add_to_cart",
       "name": "add_to_cart",
+      "source": "gtm",
       "severity": "error",
       "required": [
         "product.sku",
@@ -111,7 +136,8 @@
           "message": "Ensure ecommerce values are numeric and currency is ISO-4217.",
           "link": "https://en.wikipedia.org/wiki/ISO_4217"
         }
-      ]
+      ],
+      "business": "Cart additions will be missing or wrong in revenue reports."
     }
   ]
 }
