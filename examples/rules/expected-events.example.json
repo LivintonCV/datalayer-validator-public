@@ -1,9 +1,26 @@
 {
-  "note": "Optional split file example: expected events list (if your workflow prefers it).",
+  "note": "The smallest file the extension accepts: a version, a project and one rule per event you expect.",
+  "rulesVersion": "1.0.0",
+  "project": {
+    "name": "Example Storefront",
+    "id": "storefront-web"
+  },
   "events": [
-    "page_view",
-    "add_to_cart",
-    "purchase",
-    "sign_up"
+    {
+      "id": "evt.page_view",
+      "name": "page_view"
+    },
+    {
+      "id": "evt.add_to_cart",
+      "name": "add_to_cart"
+    },
+    {
+      "id": "evt.purchase",
+      "name": "purchase"
+    },
+    {
+      "id": "evt.sign_up",
+      "name": "sign_up"
+    }
   ]
 }
